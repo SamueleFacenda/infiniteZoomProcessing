@@ -53,6 +53,6 @@ class ExampleInfiniteZoom(sketch: InfiniteZoomSketch, index: Int): InfiniteZooma
 }
 
 fun main() {
-    val sketch = InfiniteZoomSketch(ExampleInfiniteZoom, true)
+    val sketch = InfiniteZoomSketch(ExampleInfiniteZoom, false)
     PApplet.runSketch(arrayOf("InfiniteZoomSketch"), sketch)
 }

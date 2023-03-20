@@ -41,8 +41,8 @@ class InfiniteZoomSketch(private val factory: FactoryCreator, private val autoRo
         } else {
             // the camera follows the mouse
             camera(
-                mouseX.toFloat(), mouseY.toFloat(), 220f, // eyeX, eyeY, eyeZ
-                (width/2).toFloat(), (height/2).toFloat(), 0f, // centerX, centerY, centerZ
+                mouseX.toFloat(), -mouseY.toFloat(), 300f, // eyeX, eyeY, eyeZ
+                width/2f, 0f, width/2f,// centerX, centerY, centerZ
                 0f, 1f, 0f); // upX, upY, upZ
         }
 
