@@ -1,13 +1,11 @@
 package infiniteZoomKit
 
-import processing.core.PApplet.log
-import processing.core.PApplet.pow
+import processing.core.PApplet.*
 import java.lang.Math.E
 
-abstract class InfiniteZoomable(sketch: InfiniteZoomSketch, index: Int){
+abstract class InfiniteZoomable(protected val sketch: InfiniteZoomSketch, index: Int){
 
-    private var scaleCoefficient = getJustCreatedScaleCoefficent()
-    protected val sketch: InfiniteZoomSketch = sketch
+    private var scaleCoefficient = initScaleCoefficient(index)
 
     companion object Constants{
         const val NOT_VISIBLE_THRESHOLD = 1f
@@ -15,8 +13,9 @@ abstract class InfiniteZoomable(sketch: InfiniteZoomSketch, index: Int){
         const val SPEED = 0.005f
     }
 
-    init {
+    protected final fun initScaleCoefficient(index: Int): Float{
         scaleCoefficient = getJustCreatedScaleCoefficent() + index * getScaleCoefficentOffset()
+        return scaleCoefficient
     }
 
     private fun getFirstVisibleScaleCoefficent(): Float {
@@ -41,17 +40,17 @@ abstract class InfiniteZoomable(sketch: InfiniteZoomSketch, index: Int){
 
     internal final fun isDeletable(): Boolean{
         // the element is too large to be visible
-        return pow(E.toFloat(), scaleCoefficient) * getInnerWidth() > TOO_LARGE_THRESHOLD
+        return exp(scaleCoefficient) * getInnerWidth() > TOO_LARGE_THRESHOLD
     }
 
     internal final fun isVisibile(): Boolean{
         // the element is too small to be visible
-        return pow(E.toFloat(), scaleCoefficient) * getOuterWidth() > NOT_VISIBLE_THRESHOLD
+        return exp(scaleCoefficient) * getOuterWidth() > NOT_VISIBLE_THRESHOLD
     }
 
     internal final fun displayWithScale(){
         sketch.pushMatrix()
-        sketch.scale(pow(E.toFloat(), scaleCoefficient))
+        sketch.scale(exp(scaleCoefficient))
         scaleCoefficient += SPEED
         display()
         sketch.popMatrix()
