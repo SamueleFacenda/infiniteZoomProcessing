@@ -41,7 +41,7 @@ class MoreRandomExample(sketch: InfiniteZoomSketch, index: Int): InfiniteZoomabl
             )
         }
 
-        heigths = Array(16) { sketch.random(0f, 100f) }
+        heigths = Array(16) { sketch.random(0f, 70f) }
     }
 
     constructor(sketch: InfiniteZoomSketch): this(sketch, 0)

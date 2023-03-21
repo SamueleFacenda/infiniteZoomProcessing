@@ -1,16 +1,14 @@
 package infiniteZoomKit
 
 import processing.core.PApplet.*
-import java.lang.Math.E
-
 abstract class InfiniteZoomable(protected val sketch: InfiniteZoomSketch, index: Int){
 
     private var scaleCoefficient = initScaleCoefficient(index)
 
     companion object Constants{
         const val NOT_VISIBLE_THRESHOLD = 1f
-        const val TOO_LARGE_THRESHOLD = 2000f
-        const val SPEED = 0.005f
+        const val TOO_LARGE_THRESHOLD = 3000f
+        const val SPEED = 0.01f
     }
 
     protected final fun initScaleCoefficient(index: Int): Float{
@@ -23,7 +21,7 @@ abstract class InfiniteZoomable(protected val sketch: InfiniteZoomSketch, index:
     }
 
     private fun getFirstVisibleInnerWidth(): Float {
-        return pow(E.toFloat(), getFirstVisibleScaleCoefficent()) * getInnerWidth()
+        return exp(getFirstVisibleScaleCoefficent()) * getInnerWidth()
     }
 
     private fun getJustCreatedScaleCoefficent(): Float {
