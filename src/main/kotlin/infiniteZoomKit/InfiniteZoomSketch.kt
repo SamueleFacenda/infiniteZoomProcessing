@@ -17,7 +17,7 @@ class InfiniteZoomSketch(private val factory: FactoryCreator, private val autoRo
         background(100)
         lights()
 
-        for (i in 0..5){
+        for (i in 0..10){
             elements.add(factory.produce(this, i))
         }
     }
@@ -32,7 +32,7 @@ class InfiniteZoomSketch(private val factory: FactoryCreator, private val autoRo
         if(autoRotateCamera){
             camera(
                 width/2f+ sin(cameraAngle) * CAMERA_DISTANCE,
-                -CAMERA_DISTANCE*2,
+                -CAMERA_DISTANCE*3,
                 width/2f+ cos(cameraAngle) * CAMERA_DISTANCE,
                 width/2f, 0f, width/2f,
                 0f, 1f, 0f); // upX, upY, upZ
