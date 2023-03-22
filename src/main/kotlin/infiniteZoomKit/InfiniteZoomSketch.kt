@@ -35,7 +35,7 @@ class InfiniteZoomSketch(private val factory: FactoryCreator, private val autoRo
                 -CAMERA_DISTANCE*3,
                 cos(cameraAngle) * CAMERA_DISTANCE,
                 0f, 0f, 0f,
-                0f, 1f, 0f); // upX, upY, upZ
+                0f, 1f, 0f) // upX, upY, upZ
 
             cameraAngle += CAMERA_SPEED
         } else {
@@ -43,7 +43,7 @@ class InfiniteZoomSketch(private val factory: FactoryCreator, private val autoRo
             camera(
                 mouseX.toFloat(), -mouseY.toFloat(), 300f, // eyeX, eyeY, eyeZ
                 0f, 0f, 0f,// centerX, centerY, centerZ
-                0f, 1f, 0f); // upX, upY, upZ
+                0f, 1f, 0f) // upX, upY, upZ
         }
 
         background(100)

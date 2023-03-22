@@ -9,6 +9,8 @@ import kotlin.math.sqrt
 class Rock(private val sketch: PApplet,private val circumrathio: Int) {
     companion object Static{
         private val PHI = (1f + sqrt(5.0).toFloat()) / 2f
+
+        // dodecahedron coords
         val VERTEX_COORS= arrayOf(
             Triple(1f,1f,1f),
             Triple(1f,1f,-1f),
