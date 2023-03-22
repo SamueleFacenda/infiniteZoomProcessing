@@ -31,10 +31,10 @@ class InfiniteZoomSketch(private val factory: FactoryCreator, private val autoRo
 
         if(autoRotateCamera){
             camera(
-                width/2f+ sin(cameraAngle) * CAMERA_DISTANCE,
+                sin(cameraAngle) * CAMERA_DISTANCE,
                 -CAMERA_DISTANCE*3,
-                width/2f+ cos(cameraAngle) * CAMERA_DISTANCE,
-                width/2f, 0f, width/2f,
+                cos(cameraAngle) * CAMERA_DISTANCE,
+                0f, 0f, 0f,
                 0f, 1f, 0f); // upX, upY, upZ
 
             cameraAngle += CAMERA_SPEED
@@ -42,14 +42,11 @@ class InfiniteZoomSketch(private val factory: FactoryCreator, private val autoRo
             // the camera follows the mouse
             camera(
                 mouseX.toFloat(), -mouseY.toFloat(), 300f, // eyeX, eyeY, eyeZ
-                width/2f, 0f, width/2f,// centerX, centerY, centerZ
+                0f, 0f, 0f,// centerX, centerY, centerZ
                 0f, 1f, 0f); // upX, upY, upZ
         }
 
         background(100)
-
-        // set the center of the screen as the origin
-        translate(width/2f, 0f , width/2f)
 
         // draw a very large rectangle, the field
         fill(255)

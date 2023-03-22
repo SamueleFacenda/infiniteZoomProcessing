@@ -8,7 +8,7 @@ import kotlin.math.sqrt
 
 class Rock(private val sketch: PApplet,private val circumrathio: Int) {
     companion object Static{
-        val PHI = (1f + sqrt(5.0).toFloat()) / 2f
+        private val PHI = (1f + sqrt(5.0).toFloat()) / 2f
         val VERTEX_COORS= arrayOf(
             Triple(1f,1f,1f),
             Triple(1f,1f,-1f),
