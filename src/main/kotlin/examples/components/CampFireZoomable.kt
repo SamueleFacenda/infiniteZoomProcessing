@@ -24,7 +24,7 @@ class CampFireZoomable(sketch: InfiniteZoomSketch, index: Int): InfiniteZoomable
     }
 
     override fun getInnerWidth(): Float {
-        return 20f
+        return 15f
     }
 
     override fun getOuterWidth(): Float {

@@ -8,7 +8,7 @@ class CampFire(private val sketch: PApplet) {
 
     companion object Constants {
         const val N_TONGUE = 80
-        const val N_ROCKS = 16
+        const val N_ROCKS = 15
     }
 
     private var tongues = MutableList(N_TONGUE) { getNewTongue() }

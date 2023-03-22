@@ -21,7 +21,7 @@ class InfiniteZoomSketch(
         background(100)
         lights()
 
-        for (i in 0..startNumberOfElements){
+        for (i in startNumberOfElements downTo 0){
             elements.add(factory.produce(this, i))
         }
     }

@@ -51,9 +51,10 @@ class Rock(private val sketch: PApplet,private val circumrathio: Int) {
     }
 
     private val vertex = VERTEX_COORS.map {
-        Triple(it.first + sketch.random(-1f,1f)/3,
-            it.second + sketch.random(-1f,1f)/3,
-            it.third + sketch.random(-1f,1f)/3)
+        Triple(it.first + sketch.random(-5f,5f)/15,
+            it.second + sketch.random(-5f,5f)/15,
+            it.third + sketch.random(-5f,5f)/15,
+            )
     }
 
     private val rockShape: PShape = sketch.createShape(GROUP)
@@ -63,6 +64,7 @@ class Rock(private val sketch: PApplet,private val circumrathio: Int) {
         val shape = sketch.createShape()
         shape.beginShape()
         shape.fill(color)
+        shape.noStroke()
         for(i in face){
             shape.vertex(vertex[i].first, vertex[i].second, vertex[i].third)
         }
