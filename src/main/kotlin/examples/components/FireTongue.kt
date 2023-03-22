@@ -13,6 +13,7 @@ class FireTongue(
     private val height: Float,
     private val speed: Float,
     private val span: Float,
+    private val baseY: Float,
     ) {
 
     // y=1/(1+e^-x)
@@ -37,25 +38,30 @@ class FireTongue(
     private var end = 0f
 
 
-    private val color = sketch.color(sketch.random(150f, 250f), sketch.random(0f, 100f), 0f)
+    private val color = sketch.color(
+        sketch.random(150f, 250f),
+        sketch.random(0f, 100f),
+        0f,
+        sketch.random(180f, 240f),
+        )
 
     private fun arc() {
         sketch.beginShape(QUAD_STRIP)
 
         val step = (end-start) / PRECISION
         var y = start
-
-        while(y < end){
+        // lo 0.0001f evita che ci sia un glitch in cui a volte fa 11 vertici invece di 10
+        while(y + 0.0001f < end){
             val i = (y/height)*3f
             sketch.vertex(
                 cos(angle) * logistic(i) * radius,
-                -y,
+                -y + baseY,
                 sin(angle) * logistic(i) * radius
             )
             sketch.vertex(
-                width + cos(angle) * logistic(i) * radius,
-                -y,
-                width + sin(angle) * logistic(i) * radius
+                cos(angle) * (logistic(i) * radius + width),
+                -y + baseY,
+                sin(angle) * (logistic(i) * radius + width)
             )
             y += step
         }
@@ -94,8 +100,9 @@ class Fire: PApplet() {
             2 * PI / n * it,
             10f,
             400f,
-            5f,
-            100f
+            1f,
+            100f,
+            0f
         )
     }
 
