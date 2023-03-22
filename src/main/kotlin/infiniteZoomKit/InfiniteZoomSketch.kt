@@ -2,7 +2,11 @@ package infiniteZoomKit
 
 import processing.core.PApplet
 
-class InfiniteZoomSketch(private val factory: FactoryCreator, private val autoRotateCamera: Boolean = false): PApplet(){
+class InfiniteZoomSketch(
+    private val factory: FactoryCreator,
+    private val autoRotateCamera: Boolean = false,
+    private val startNumberOfElements: Int = 10
+): PApplet(){
 
     private val elements = mutableListOf<InfiniteZoomable>()
     private var cameraAngle = 0f
@@ -17,7 +21,7 @@ class InfiniteZoomSketch(private val factory: FactoryCreator, private val autoRo
         background(100)
         lights()
 
-        for (i in 0..10){
+        for (i in 0..startNumberOfElements){
             elements.add(factory.produce(this, i))
         }
     }

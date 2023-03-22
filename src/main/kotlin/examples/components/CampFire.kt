@@ -1,7 +1,5 @@
-package examples
+package examples.components
 
-import examples.components.FireTongue
-import examples.components.Rock
 import processing.core.PApplet
 import processing.core.PApplet.*
 import kotlin.math.PI
@@ -18,7 +16,7 @@ class CampFire(private val sketch: PApplet) {
     private fun getNewTongue(): FireTongue {
         return FireTongue(
             sketch,
-            sketch.random(10f, 17f),
+            sketch.random(8f, 17f),
             (2f * PI / 1000f * sketch.random(1f, 1000f)).toFloat(),
             sketch.random(2f, 8f),
             60f,

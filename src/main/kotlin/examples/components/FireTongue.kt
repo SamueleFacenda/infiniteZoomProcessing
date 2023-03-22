@@ -16,14 +16,8 @@ class FireTongue(
     private val baseY: Float,
     ) {
 
-    // y=1/(1+e^-x)
-    // 1+e^-x=i/y
-    // e^-x=i/y-1
-    // -x=ln(i/y-1)
-    // x=-ln(i/y-1)
-    // -4(x-1)=-ln(i/y-1)
-    // x=ln(i/y-1)/4-1.5
-    // Y=1/(1+e^(-4(x-1.5)))
+
+    // Y=1/(1+e^(-4(1.5-x)))
     // con x da 0 a 3
     // y da 0 a 1
     private fun logistic(x: Float): Float {
@@ -37,13 +31,20 @@ class FireTongue(
     private var start = 0f
     private var end = 0f
 
+    private fun logisticColor(x: Float): Float {
+        return 150f / (1f + exp(1.5f * (x-10f)))
+    }
 
-    private val color = sketch.color(
-        sketch.random(150f, 250f),
-        sketch.random(0f, 100f),
-        0f,
-        sketch.random(180f, 240f),
+    private val color: Int
+    init {
+        val blue = logisticColor(radius)
+        color = sketch.color(
+            max(sketch.random(150f, 250f) - blue, 0f),
+            max(sketch.random(0f, 100f) - blue, 0f),
+            blue,
+            sketch.random(180f, 240f),
         )
+    }
 
     private fun arc() {
         sketch.beginShape(QUAD_STRIP)
