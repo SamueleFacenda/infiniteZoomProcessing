@@ -20,7 +20,7 @@ class CampFire(private val sketch: PApplet) {
             (2f * PI / 1000f * sketch.random(1f, 1000f)).toFloat(),
             sketch.random(2f, 8f),
             60f,
-            sketch.random(1f, 6f)/5,
+            sketch.random(1f, 6f)/3,
             sketch.random(10f, 50f),
             -8f
         )

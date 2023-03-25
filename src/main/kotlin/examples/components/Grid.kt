@@ -4,6 +4,7 @@ import infiniteZoomKit.FactoryCreator
 import infiniteZoomKit.InfiniteZoomSketch
 import infiniteZoomKit.InfiniteZoomable
 import processing.core.PApplet.GROUP
+import processing.core.PShape
 import javax.accessibility.AccessibleExtendedText.LINE
 
 class Grid(sketch: InfiniteZoomSketch, index:Int, exponent: Int = 3): InfiniteZoomable(sketch, index) {
@@ -30,9 +31,23 @@ class Grid(sketch: InfiniteZoomSketch, index:Int, exponent: Int = 3): InfiniteZo
 
     init {
         sketch.stroke(0)
+        val toAdd = mutableListOf<PShape>()
         for(i in -halfSide .. halfSide){
-            shape.addChild(sketch.createShape(LINE, -halfSide.toFloat(), 0f, i.toFloat(), halfSide.toFloat(), 0f, i.toFloat()))
-            shape.addChild(sketch.createShape(LINE,i .toFloat(), 0f, -halfSide.toFloat(), i.toFloat(), 0f, halfSide.toFloat()))
+            if(-halfSide/2 <= i && i <= halfSide/2){
+                // line with a space in the center
+                toAdd.add(sketch.createShape(LINE, -halfSide.toFloat(), 0f, i.toFloat(), -halfSide/2f, 0f, i.toFloat()))
+                toAdd.add(sketch.createShape(LINE, halfSide/2f, 0f, i.toFloat(), halfSide.toFloat(), 0f, i.toFloat()))
+
+                toAdd.add(sketch.createShape(LINE, i.toFloat(), 0f, -halfSide.toFloat(), i.toFloat(), 0f, -halfSide/2f))
+                toAdd.add(sketch.createShape(LINE, i.toFloat(), 0f, halfSide/2f, i.toFloat(), 0f, halfSide.toFloat()))
+            }else{
+                toAdd.add(sketch.createShape(LINE, -halfSide.toFloat(), 0f, i.toFloat(), halfSide.toFloat(), 0f, i.toFloat()))
+                toAdd.add(sketch.createShape(LINE,i .toFloat(), 0f, -halfSide.toFloat(), i.toFloat(), 0f, halfSide.toFloat()))
+            }
+
+            for(it in toAdd)
+                shape.addChild(it)
+            toAdd.clear()
         }
     }
 
