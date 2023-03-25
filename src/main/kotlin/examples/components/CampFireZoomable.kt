@@ -33,6 +33,6 @@ class CampFireZoomable(sketch: InfiniteZoomSketch, index: Int): InfiniteZoomable
 }
 
 fun main() {
-    val sketch = InfiniteZoomSketch(CampFireZoomable, true, 2)
+    val sketch = InfiniteZoomSketch(CampFireZoomable, true, 4, true)
     PApplet.runSketch(arrayOf("InfiniteZoomSketch"), sketch)
 }

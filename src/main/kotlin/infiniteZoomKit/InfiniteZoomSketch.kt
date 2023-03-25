@@ -1,17 +1,21 @@
 package infiniteZoomKit
 
+import examples.components.Grid
 import processing.core.PApplet
 
 class InfiniteZoomSketch(
     private val factory: FactoryCreator,
     private val autoRotateCamera: Boolean = false,
-    private val startNumberOfElements: Int = 10
+    private val startNumberOfElements: Int = 10,
+    private val showGrid: Boolean = false,
 ): PApplet(){
 
     private val elements = mutableListOf<InfiniteZoomable>()
     private var cameraAngle = 0f
     private val CAMERA_DISTANCE = 500f
     private val CAMERA_SPEED = 0.005f
+
+    private val grid = mutableListOf<InfiniteZoomable>()
 
     override fun settings() {
         size(1024, 1024, P3D)
@@ -23,6 +27,9 @@ class InfiniteZoomSketch(
 
         for (i in startNumberOfElements downTo 0){
             elements.add(factory.produce(this, i))
+
+            if(showGrid)
+                grid.add(Grid(this, i))
         }
     }
 
@@ -31,6 +38,13 @@ class InfiniteZoomSketch(
             elements.add(factory.produce(this))
         if(elements.first().isDeletable())
             elements.removeFirst()
+
+        if(showGrid){
+            if(grid.last().isVisibile())
+                grid.add(Grid(this))
+            if(grid.first().isDeletable())
+                grid.removeFirst()
+        }
 
 
         if(autoRotateCamera){
@@ -56,6 +70,9 @@ class InfiniteZoomSketch(
         fill(255)
         val fieldSize = 100000f
         box(fieldSize, 0f, fieldSize)
+
+        // draw the grid
+        grid.forEach {it.displayWithScale()}
 
         // draw the elements
         elements.forEach { it.displayWithScale() }

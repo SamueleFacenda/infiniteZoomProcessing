@@ -3,16 +3,20 @@ package examples.components
 import infiniteZoomKit.FactoryCreator
 import infiniteZoomKit.InfiniteZoomSketch
 import infiniteZoomKit.InfiniteZoomable
-import processing.core.PApplet
-import processing.core.PApplet.exp
+import processing.core.PApplet.GROUP
+import javax.accessibility.AccessibleExtendedText.LINE
 
-class Grid(sketch: InfiniteZoomSketch, index:Int, exponent: Int = 4): InfiniteZoomable(sketch, index) {
+class Grid(sketch: InfiniteZoomSketch, index:Int, exponent: Int = 3): InfiniteZoomable(sketch, index) {
 
     constructor(sketch: InfiniteZoomSketch): this(sketch, 0)
     // 2^exponent
     private val numberOfLines = 1 shl exponent
+    private val halfSide = 1 shl (exponent-1)
+
+    init {
+        initScaleCoefficient(index)
+    }
     companion object: FactoryCreator() {
-        const val SIDE = 100
         override fun produce(sketch: InfiniteZoomSketch): InfiniteZoomable {
             return Grid(sketch)
         }
@@ -22,24 +26,26 @@ class Grid(sketch: InfiniteZoomSketch, index:Int, exponent: Int = 4): InfiniteZo
         }
     }
 
+    private val shape = sketch.createShape(GROUP)
 
-    override fun display() {
-        sketch.strokeWeight(1f/exp(getScaleCoefficent()))
-        var i = -SIDE/2f
-        val step = SIDE.toFloat() / numberOfLines
-        while(i <= SIDE/2){
-            sketch.line(-SIDE/2f, 0f, i.toFloat(), SIDE/2f, 0f, i.toFloat())
-            sketch.line(i.toFloat(), 0f, -SIDE/2f, i.toFloat(), 0f, SIDE/2f)
-
-            i += step
+    init {
+        sketch.stroke(0)
+        for(i in -halfSide .. halfSide){
+            shape.addChild(sketch.createShape(LINE, -halfSide.toFloat(), 0f, i.toFloat(), halfSide.toFloat(), 0f, i.toFloat()))
+            shape.addChild(sketch.createShape(LINE,i .toFloat(), 0f, -halfSide.toFloat(), i.toFloat(), 0f, halfSide.toFloat()))
         }
     }
 
+
+    override fun display() {
+        sketch.shape(shape)
+    }
+
     override fun getInnerWidth(): Float {
-        return SIDE/2f
+        return halfSide.toFloat()
     }
 
     override fun getOuterWidth(): Float {
-        return SIDE.toFloat()
+        return numberOfLines.toFloat()
     }
 }
