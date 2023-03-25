@@ -36,7 +36,6 @@ class Grid(sketch: InfiniteZoomSketch, index:Int, exponent: Int = 3): InfiniteZo
         }
     }
 
-
     override fun display() {
         sketch.shape(shape)
     }

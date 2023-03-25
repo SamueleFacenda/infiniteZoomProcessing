@@ -1,5 +1,6 @@
-package examples.components
+package examples.components.exec
 
+import examples.components.CampFire
 import infiniteZoomKit.FactoryCreator
 import infiniteZoomKit.InfiniteZoomSketch
 import infiniteZoomKit.InfiniteZoomable

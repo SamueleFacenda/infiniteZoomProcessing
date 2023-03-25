@@ -45,26 +45,4 @@ class CampFire(private val sketch: PApplet) {
         }
     }
 }
-class CampSketch: PApplet() {
 
-    private lateinit var camp: CampFire
-    override fun settings() {
-        size(800, 800, P3D)
-    }
-
-    override fun setup() {
-        lights()
-        camp = CampFire(this)
-    }
-
-    override fun draw() {
-        background(255)
-        camera(mouseX.toFloat(), -600f, 300f, 0f, 0f, 0f, 0f, 1f, 0f)
-        scale(5f)
-        camp.draw()
-    }
-}
-
-fun main() {
-    runSketch(arrayOf("CampSketch"), CampSketch())
-}
