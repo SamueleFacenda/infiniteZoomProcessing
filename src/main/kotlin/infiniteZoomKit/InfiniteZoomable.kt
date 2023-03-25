@@ -53,4 +53,8 @@ abstract class InfiniteZoomable(protected val sketch: InfiniteZoomSketch, index:
         display()
         sketch.popMatrix()
     }
+
+    protected fun getScaleCoefficent(): Float {
+        return scaleCoefficient
+    }
 }
