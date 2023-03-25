@@ -10,7 +10,6 @@ class RainDrop(
     fun draw(sketch: PApplet){
         sketch.pushMatrix()
         sketch.stroke(0f, 50f, 200f)
-        sketch.strokeWeight(5f)
         sketch.line(
             position.first,
             position.second,

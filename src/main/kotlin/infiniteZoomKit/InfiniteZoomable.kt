@@ -48,9 +48,11 @@ abstract class InfiniteZoomable(protected val sketch: InfiniteZoomSketch, index:
 
     internal final fun displayWithScale(){
         sketch.pushMatrix()
+        sketch.pushStyle()
         sketch.scale(exp(scaleCoefficient))
         scaleCoefficient += SPEED
         display()
+        sketch.popStyle()
         sketch.popMatrix()
     }
 

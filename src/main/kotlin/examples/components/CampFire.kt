@@ -1,16 +1,39 @@
 package examples.components
 
-import processing.core.PApplet
+import infiniteZoomKit.FactoryCreator
+import infiniteZoomKit.InfiniteZoomSketch
+import infiniteZoomKit.InfiniteZoomable
 import processing.core.PApplet.*
 import kotlin.math.PI
 
-class CampFire(private val sketch: PApplet) {
+class CampFire(sketch: InfiniteZoomSketch, index: Int): InfiniteZoomable(sketch, index) {
 
-    companion object Constants {
+    constructor(sketch: InfiniteZoomSketch): this(sketch, 0)
+
+    companion object Factory: FactoryCreator(){
+        override fun produce(sketch: InfiniteZoomSketch): InfiniteZoomable {
+            return CampFire(sketch)
+        }
+
+        override fun produce(sketch: InfiniteZoomSketch, i: Int): InfiniteZoomable {
+            return CampFire(sketch, i)
+        }
         const val N_TONGUE = 80
         const val N_ROCKS = 15
     }
 
+    private val rain = Rain(
+        sketch,
+        17f,
+        40f,
+        60f,
+        60f,
+        Triple(
+            sketch.random(-1f, 1f),
+            sketch.random(3f, 4f),
+            sketch.random(-1f, 1f),
+        )
+    )
     private var tongues = MutableList(N_TONGUE) { getNewTongue() }
 
     private fun getNewTongue(): FireTongue {
@@ -28,7 +51,10 @@ class CampFire(private val sketch: PApplet) {
 
     private val rocks = List(N_ROCKS) { Rock(sketch, 5) }
 
-    fun draw() {
+    override fun display() {
+        sketch.strokeWeight(1/exp(getScaleCoefficent()))
+        rain.draw()
+
         tongues.forEach { it.draw() }
         tongues.replaceAll { if (it.isDead()) getNewTongue() else it }
 
@@ -43,6 +69,13 @@ class CampFire(private val sketch: PApplet) {
             r.draw()
             sketch.popMatrix()
         }
+    }
+    override fun getInnerWidth(): Float {
+        return 10f
+    }
+
+    override fun getOuterWidth(): Float {
+        return 50f
     }
 }
 

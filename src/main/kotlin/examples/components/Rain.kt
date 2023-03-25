@@ -16,15 +16,15 @@ class Rain(
         const val NUMBER_OF_RAINDROPS = 100
     }
 
-    private val rainDrops = mutableListOf<RainDrop>()
+    private val rainDrops = MutableList(NUMBER_OF_RAINDROPS) { getNewRainDrop() }
 
     private fun getNewRainDrop(): RainDrop {
         return RainDrop(
-            sketch.random(2f, 6f),
+            sketch.random(1f, 3f),
             Triple(
-                rainDropVector.first + sketch.random(-1f, 1f),
-                rainDropVector.first + sketch.random(-1f, 1f),
-                rainDropVector.first + sketch.random(-1f, 1f),
+                rainDropVector.first + sketch.random(-1f, 1f)/10,
+                rainDropVector.second + sketch.random(-1f, 1f)/10,
+                rainDropVector.third + sketch.random(-1f, 1f)/10,
             ),
             getNewPosition()
         )
@@ -52,17 +52,19 @@ class Rain(
         val y = pos.second
         val z = pos.third
         val posRadio = sqrt(x*x + z*z)
+
+        if(y > 0)
+            return false
+
         if(posRadio > outerRadius)
             return false
 
         if(y<getInnerCilinderHeight() && posRadio < innerRadius)
             return false
 
-        if(
-            posRadio < innerRadius &&
+        if(posRadio < innerRadius &&
             getInnerCilinderHeight() > y &&
-            y < getInnerCilinderHeight() + getInnerConeHeight() * posRadio/innerRadius
-        )
+            y < getInnerCilinderHeight() + getInnerConeHeight() * posRadio/innerRadius)
             return false
 
         return true
