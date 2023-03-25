@@ -16,11 +16,11 @@ class CampFire(private val sketch: PApplet) {
     private fun getNewTongue(): FireTongue {
         return FireTongue(
             sketch,
-            sketch.random(8f, 17f),
+            sketch.random(6f, 17f),
             (2f * PI / 1000f * sketch.random(1f, 1000f)).toFloat(),
             sketch.random(2f, 8f),
             60f,
-            sketch.random(1f, 6f)/10,
+            sketch.random(1f, 6f)/5,
             sketch.random(10f, 50f),
             -8f
         )

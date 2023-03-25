@@ -32,7 +32,7 @@ class FireTongue(
     private var end = 0f
 
     private fun logisticColor(x: Float): Float {
-        return 150f / (1f + exp(1.5f * (x-10f)))
+        return 150f / (1f + exp(1.5f * (x-9f)))
     }
 
     private val color: Int
