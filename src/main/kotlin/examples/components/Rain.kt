@@ -13,7 +13,7 @@ class Rain(
     ) {
 
     companion object{
-        const val NUMBER_OF_RAINDROPS = 100
+        const val NUMBER_OF_RAINDROPS = 200
     }
 
     private val rainDrops = MutableList(NUMBER_OF_RAINDROPS) { getNewRainDrop() }

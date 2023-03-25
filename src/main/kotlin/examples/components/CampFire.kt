@@ -29,9 +29,9 @@ class CampFire(sketch: InfiniteZoomSketch, index: Int): InfiniteZoomable(sketch,
         60f,
         60f,
         Triple(
-            sketch.random(-1f, 1f),
+            sketch.random(-2f, 2f)/3,
             sketch.random(3f, 4f),
-            sketch.random(-1f, 1f),
+            sketch.random(-2f, 2f)/3,
         )
     )
     private var tongues = MutableList(N_TONGUE) { getNewTongue() }
@@ -52,7 +52,7 @@ class CampFire(sketch: InfiniteZoomSketch, index: Int): InfiniteZoomable(sketch,
     private val rocks = List(N_ROCKS) { Rock(sketch, 5) }
 
     override fun display() {
-        sketch.strokeWeight(1/exp(getScaleCoefficent()))
+        sketch.strokeWeight(2/exp(getScaleCoefficent()))
         rain.draw()
 
         tongues.forEach { it.draw() }
