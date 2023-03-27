@@ -18,7 +18,7 @@ class Splash(
     private var end = 0
 
     private fun parabole(x: Float): Float{
-        return pow(abs(x) - functionVariable, 2f) / functionVariable + functionVariable
+        return pow(x - functionVariable, 2f) / functionVariable - functionVariable
     }
 
     fun draw(sketch: PApplet){
@@ -31,7 +31,7 @@ class Splash(
             sketch.pushMatrix()
 
             sketch.translate(x, y, z)
-            sketch.rotateX(PApplet.PI/2f)
+            sketch.rotateX(PApplet.PI/4f)
             sketch.circle(0f,0f,i.toFloat())
 
             sketch.popMatrix()
@@ -39,8 +39,11 @@ class Splash(
 
         if(end > SPAN)
             start++
-        if(parabole(end.toFloat()) > 0)
+        if(parabole(end.toFloat()) <= 0)
             end++
+    }
 
+    fun isFinished(): Boolean{
+        return parabole(end.toFloat()) > 0
     }
 }
