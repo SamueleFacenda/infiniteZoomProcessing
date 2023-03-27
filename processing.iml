@@ -13,5 +13,6 @@
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
     <orderEntry type="library" name="core" level="project" />
     <orderEntry type="library" name="gluegen-rt" level="project" />
+    <orderEntry type="library" name="native_dll" level="project" />
   </component>
 </module>

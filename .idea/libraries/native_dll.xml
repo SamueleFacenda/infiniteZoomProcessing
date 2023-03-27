@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="native_dll">
+    <CLASSES />
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/../../../Public/Documents/processing-4.2/core/library/windows-amd64" />
+      <root url="file://$PROJECT_DIR$/../../../Public/Documents/processing-4.2/core/library/linux-aarch64" />
+      <root url="file://$PROJECT_DIR$/../../../Public/Documents/processing-4.2/core/library/linux-amd64" />
+      <root url="file://$PROJECT_DIR$/../../../Public/Documents/processing-4.2/core/library/linux-arm" />
+      <root url="file://$PROJECT_DIR$/../../../Public/Documents/processing-4.2/core/library/macos-aarch64" />
+      <root url="file://$PROJECT_DIR$/../../../Public/Documents/processing-4.2/core/library/macos-x86_64" />
+    </NATIVE>
+    <SOURCES />
+  </library>
+</component>
