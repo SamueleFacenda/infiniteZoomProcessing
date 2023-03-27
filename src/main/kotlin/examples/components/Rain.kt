@@ -33,7 +33,7 @@ class Rain(
     private fun getNewPosition(): Triple<Float, Float, Float>{
         val x = sketch.random(-outerRadius, outerRadius)
         val z = sketch.random(-outerRadius, outerRadius)
-        var y = cilinderHeight + coneHeight * sqrt(x*x + z*z)/outerRadius
+        var y = cilinderHeight + coneHeight + sqrt(x*x + z*z)*(coneHeight/outerRadius*-1f)
         y = -y
         return Triple(x, y, z)
     }
@@ -64,7 +64,7 @@ class Rain(
 
         if(posRadio < innerRadius &&
             getInnerCilinderHeight() > y &&
-            y < getInnerCilinderHeight() + getInnerConeHeight() * posRadio/innerRadius)
+            y < getInnerCilinderHeight() + getInnerConeHeight() * posRadio/innerRadius - getInnerConeHeight())
             return false
 
         return true
