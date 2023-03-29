@@ -6,7 +6,7 @@ abstract class InfiniteZoomable(protected val sketch: InfiniteZoomSketch, index:
     private var scaleCoefficient = initScaleCoefficient(index)
 
     companion object Constants{
-        const val NOT_VISIBLE_THRESHOLD = 1f
+        const val NOT_VISIBLE_THRESHOLD = 20f
         const val TOO_LARGE_THRESHOLD = 3000f
         const val SPEED = 0.01f
     }

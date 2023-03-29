@@ -17,13 +17,19 @@ class InfiniteZoomSketch(
     private val CAMERA_SPEED = 0.005f
 
     private val grid = mutableListOf<InfiniteZoomable>()
+    private val lato = 1024
+    private val screenHeight = 1824
+    private val screenWidth = 2736
 
     override fun settings() {
-        size(1024, 1024, P3D)
+        size(lato, lato, P3D)
     }
 
     override fun setup() {
         frameRate(framerate.toFloat())
+        surface.setTitle("Infinite camp fire");
+        surface.setResizable(true);
+        surface.setLocation((screenWidth-lato)/2, (screenHeight-lato)/2)
 
         background(100)
         lights()
@@ -80,4 +86,5 @@ class InfiniteZoomSketch(
         // draw the elements
         elements.forEach { it.displayWithScale() }
     }
+
 }
