@@ -17,6 +17,7 @@ class Rain(
     }
 
     private val rainDrops = MutableList(NUMBER_OF_RAINDROPS) { getNewRainDrop() }
+    private val splashes: MutableList<Splash> = mutableListOf()
 
     private fun getNewRainDrop(): RainDrop {
         return RainDrop(
@@ -46,7 +47,7 @@ class Rain(
         return outerRadius/cilinderHeight*innerRadius
     }
 
-    private fun isValid(drop: RainDrop): Boolean{
+    private fun isValid(drop: RainDrop): Int{
         val pos = drop.getPosition()
         val x = pos.first
         val y = pos.second
@@ -54,24 +55,36 @@ class Rain(
         val posRadio = sqrt(x*x + z*z)
 
         if(y > 0)
-            return false
+            return -1
 
         if(posRadio > outerRadius)
-            return false
+            return 0
 
         if(y<getInnerCilinderHeight() && posRadio < innerRadius)
-            return false
+            return 0
 
         if(posRadio < innerRadius &&
             getInnerCilinderHeight() > y &&
             y < getInnerCilinderHeight() + getInnerConeHeight() * posRadio/innerRadius - getInnerConeHeight())
-            return false
+            return 0
 
-        return true
+        return 1
     }
 
     fun draw() {
         rainDrops.forEach { it.draw(sketch) }
-        rainDrops.replaceAll { if(isValid(it)) it else getNewRainDrop() }
+        rainDrops.replaceAll {
+            when(isValid(it)){
+                -1 -> {
+                    splashes += Splash.getNewSplashFromRainDrop(it, 2f)
+                    getNewRainDrop()
+                }
+                0 -> getNewRainDrop()
+                else -> it
+            }
+        }
+
+        splashes.forEach { it.draw(sketch) }
+        splashes.removeIf { it.isFinished() }
     }
 }

@@ -8,6 +8,7 @@ class InfiniteZoomSketch(
     private val autoRotateCamera: Boolean = false,
     private val startNumberOfElements: Int = 10,
     private val showGrid: Boolean = false,
+    private val framerate: Int = 60,
 ): PApplet(){
 
     private val elements = mutableListOf<InfiniteZoomable>()
@@ -22,6 +23,8 @@ class InfiniteZoomSketch(
     }
 
     override fun setup() {
+        frameRate(framerate.toFloat())
+
         background(100)
         lights()
 

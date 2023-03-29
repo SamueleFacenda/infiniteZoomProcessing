@@ -24,7 +24,7 @@ class CampFire(sketch: InfiniteZoomSketch, index: Int): InfiniteZoomable(sketch,
 
     private val rain = Rain(
         sketch,
-        17f,
+        20f,
         40f,
         60f,
         60f,
