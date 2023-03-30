@@ -23,6 +23,7 @@ class InfiniteZoomSketch(
 
     override fun settings() {
         size(lato, lato, P3D)
+        //fullScreen(P3D);
     }
 
     override fun setup() {
@@ -67,8 +68,9 @@ class InfiniteZoomSketch(
             cameraAngle += CAMERA_SPEED
         } else {
             // the camera follows the mouse
+            val orizhontal = 300f * sin(mouseY/300f)
             camera(
-                mouseX.toFloat(), -mouseY.toFloat(), 300f, // eyeX, eyeY, eyeZ
+                orizhontal * sin(mouseX/100f),-300f * cos(mouseY/300f), orizhontal * cos(mouseX/100f), // eyeX, eyeY, eyeZ
                 0f, 0f, 0f,// centerX, centerY, centerZ
                 0f, 1f, 0f) // upX, upY, upZ
         }

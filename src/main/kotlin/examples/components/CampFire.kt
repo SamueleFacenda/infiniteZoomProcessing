@@ -65,7 +65,6 @@ class CampFire(sketch: InfiniteZoomSketch, index: Int): InfiniteZoomable(sketch,
                 -2.5f,
                 cos(i.toFloat() / N_ROCKS * 2 * PI.toFloat()) * 20,
             )
-            sketch.sphere(1f)
             r.draw()
             sketch.popMatrix()
         }
