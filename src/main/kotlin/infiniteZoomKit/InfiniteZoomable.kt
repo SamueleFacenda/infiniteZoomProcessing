@@ -1,6 +1,15 @@
 package infiniteZoomKit
 
 import processing.core.PApplet.*
+
+/**
+ * @author: Samuele Facenda
+ * @since: 1.0
+ *
+ * An abstract class that represents an object that can be zoomed infinitely.
+ * @param sketch the sketch that contains the object
+ * @param index used for the initial scale coefficient, 0 by default, the smaller
+ */
 abstract class InfiniteZoomable(protected val sketch: InfiniteZoomSketch, index: Int){
 
     private var scaleCoefficient = initScaleCoefficient(index)
