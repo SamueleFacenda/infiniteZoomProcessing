@@ -20,7 +20,7 @@ abstract class InfiniteZoomable(protected val sketch: InfiniteZoomSketch, index:
         const val SPEED = 0.01f
     }
 
-    protected final fun initScaleCoefficient(index: Int): Float{
+    protected fun initScaleCoefficient(index: Int): Float{
         scaleCoefficient = getJustCreatedScaleCoefficent() + index * getScaleCoefficentOffset()
         return scaleCoefficient
     }

@@ -55,9 +55,6 @@ class CampFire(sketch: InfiniteZoomSketch, index: Int): InfiniteZoomable(sketch,
         sketch.strokeWeight(2/exp(getScaleCoefficent()))
         rain.draw()
 
-        tongues.forEach { it.draw() }
-        tongues.replaceAll { if (it.isDead()) getNewTongue() else it }
-
         rocks.forEachIndexed { i, r ->
             sketch.pushMatrix()
             sketch.translate(
@@ -68,6 +65,9 @@ class CampFire(sketch: InfiniteZoomSketch, index: Int): InfiniteZoomable(sketch,
             r.draw()
             sketch.popMatrix()
         }
+
+        tongues.forEach { it.draw() }
+        tongues.replaceAll { if (it.isDead()) getNewTongue() else it }
     }
     override fun getInnerWidth(): Float {
         return 10f

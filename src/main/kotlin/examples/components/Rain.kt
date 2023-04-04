@@ -76,7 +76,7 @@ class Rain(
         rainDrops.replaceAll {
             when(isValid(it)){
                 -1 -> {
-                    splashes += Splash.getNewSplashFromRainDrop(it, 2f)
+                    splashes += Splash.getNewSplashFromRainDrop(it, 2f, sketch)
                     getNewRainDrop()
                 }
                 0 -> getNewRainDrop()
@@ -84,7 +84,7 @@ class Rain(
             }
         }
 
-        splashes.forEach { it.draw(sketch) }
+        splashes.forEach { it.draw() }
         splashes.removeIf { it.isFinished() }
     }
 }

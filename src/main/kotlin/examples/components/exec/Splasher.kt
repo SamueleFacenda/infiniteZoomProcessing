@@ -12,17 +12,17 @@ class Splasher: PApplet() {
         frameRate(60f)
     }
 
-    private var splash = Splash(100f, 0f, 0f)
+    private var splash = Splash(100f, 0f, 0f, this)
 
     override fun draw() {
         background(255)
         lights()
         camera(mouseX.toFloat(), mouseY.toFloat(), 200f, 0f, 0f, 0f, 0f, 1f, 0f)
 
-        splash.draw(this)
+        splash.draw()
 
         if(splash.isFinished())
-            splash = Splash(100f, 0f, 0f)
+            splash = Splash(100f, 0f, 0f, this)
     }
 }
 
