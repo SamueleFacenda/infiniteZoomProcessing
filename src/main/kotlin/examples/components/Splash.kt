@@ -16,7 +16,7 @@ class Splash(
     companion object{
         const val SPAN = 3
         const val N_STEPS = 10
-        const val RESOLUTION = 3
+        const val RESOLUTION = 2
 
         private val instances: MutableMap<Int, List<PShape>> = HashMap()
 
