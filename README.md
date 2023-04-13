@@ -24,3 +24,7 @@ https://user-images.githubusercontent.com/92163673/229059877-3fc26310-e4f9-4279-
 ### P.S.
 
 My pc is not powerful, the lag in the videos is caused by the fact that intellij, processing running and the video recording are too much for my poor surface pro:smile:!
+
+### P.P.S.
+
+The version of the campfire used in the video was not fully optimized, the last one is better and less laggy(the rain splashes are stored shapes and not new drawings)
