@@ -41,9 +41,6 @@ abstract class InfiniteZoomable(protected val sketch: InfiniteZoomSketch, index:
         return getFirstVisibleScaleCoefficent() - getJustCreatedScaleCoefficent()
     }
 
-    /**
-     * Displays the object
-     */
     protected abstract fun draw()
 
     /**
@@ -51,18 +48,13 @@ abstract class InfiniteZoomable(protected val sketch: InfiniteZoomSketch, index:
      */
     protected abstract fun getInnerWidth(): Float
 
-    /**
-     * @return the size of the object
-     */
     protected abstract fun getOuterWidth(): Float
 
     internal fun isDeletable(): Boolean{
-        // the element is too large to be visible
         return exp(scaleCoefficient) * getInnerWidth() > TOO_LARGE_THRESHOLD
     }
 
     internal fun isVisibile(): Boolean{
-        // the element is too small to be visible
         return exp(scaleCoefficient) * getOuterWidth() > NOT_VISIBLE_THRESHOLD
     }
 

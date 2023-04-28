@@ -10,12 +10,12 @@ class ExampleInfiniteZoom(sketch: InfiniteZoomSketch, index: Int): InfiniteZooma
     constructor(sketch: InfiniteZoomSketch): this(sketch, 0)
 
     companion object Factory: FactoryCreator(){
-        override fun produce(sketch: InfiniteZoomSketch): InfiniteZoomable {
+        override fun produceObjectOnSketch(sketch: InfiniteZoomSketch): InfiniteZoomable {
             return ExampleInfiniteZoom(sketch)
         }
 
-        override fun produce(sketch: InfiniteZoomSketch, i: Int): InfiniteZoomable {
-            return ExampleInfiniteZoom(sketch, i)
+        override fun produceObjectOnSketch(sketch: InfiniteZoomSketch, startSizeIndex: Int): InfiniteZoomable {
+            return ExampleInfiniteZoom(sketch, startSizeIndex)
         }
     }
 

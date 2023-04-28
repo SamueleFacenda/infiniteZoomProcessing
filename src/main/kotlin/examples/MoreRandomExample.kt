@@ -47,12 +47,12 @@ class MoreRandomExample(sketch: InfiniteZoomSketch, index: Int): InfiniteZoomabl
     constructor(sketch: InfiniteZoomSketch): this(sketch, 0)
 
     companion object Factory: FactoryCreator(){
-        override fun produce(sketch: InfiniteZoomSketch): InfiniteZoomable {
+        override fun produceObjectOnSketch(sketch: InfiniteZoomSketch): InfiniteZoomable {
             return MoreRandomExample(sketch)
         }
 
-        override fun produce(sketch: InfiniteZoomSketch, i: Int): InfiniteZoomable {
-            return MoreRandomExample(sketch, i)
+        override fun produceObjectOnSketch(sketch: InfiniteZoomSketch, startSizeIndex: Int): InfiniteZoomable {
+            return MoreRandomExample(sketch, startSizeIndex)
         }
     }
 

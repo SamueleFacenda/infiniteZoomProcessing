@@ -11,12 +11,12 @@ class CampFire(sketch: InfiniteZoomSketch, index: Int): InfiniteZoomable(sketch,
     constructor(sketch: InfiniteZoomSketch): this(sketch, 0)
 
     companion object Factory: FactoryCreator(){
-        override fun produce(sketch: InfiniteZoomSketch): InfiniteZoomable {
+        override fun produceObjectOnSketch(sketch: InfiniteZoomSketch): InfiniteZoomable {
             return CampFire(sketch)
         }
 
-        override fun produce(sketch: InfiniteZoomSketch, i: Int): InfiniteZoomable {
-            return CampFire(sketch, i)
+        override fun produceObjectOnSketch(sketch: InfiniteZoomSketch, startSizeIndex: Int): InfiniteZoomable {
+            return CampFire(sketch, startSizeIndex)
         }
         const val N_TONGUE = 80
         const val N_ROCKS = 15

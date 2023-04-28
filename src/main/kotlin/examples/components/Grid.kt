@@ -23,12 +23,12 @@ class Grid(
     }
     companion object: FactoryCreator() {
         private val instances: MutableMap<Int, PShape> = HashMap()
-        override fun produce(sketch: InfiniteZoomSketch): InfiniteZoomable {
+        override fun produceObjectOnSketch(sketch: InfiniteZoomSketch): InfiniteZoomable {
             return Grid(sketch)
         }
 
-        override fun produce(sketch: InfiniteZoomSketch, i: Int): InfiniteZoomable {
-            return Grid(sketch, i)
+        override fun produceObjectOnSketch(sketch: InfiniteZoomSketch, startSizeIndex: Int): InfiniteZoomable {
+            return Grid(sketch, startSizeIndex)
         }
     }
 
