@@ -19,7 +19,7 @@ class ExampleInfiniteZoom(sketch: InfiniteZoomSketch, index: Int): InfiniteZooma
         }
     }
 
-    override fun display() {
+    override fun draw() {
         sketch.fill(150f)
 
         sketch.pushMatrix()

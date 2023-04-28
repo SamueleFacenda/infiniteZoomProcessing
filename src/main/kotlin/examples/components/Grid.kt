@@ -119,7 +119,7 @@ class Grid(
         }
     }
 
-    override fun display() {
+    override fun draw() {
         sketch.shape(instances[exponent]!!)
     }
 

@@ -15,7 +15,7 @@ abstract class InfiniteZoomable(protected val sketch: InfiniteZoomSketch, index:
     private var scaleCoefficient = initScaleCoefficient(index)
 
     companion object Constants{
-        const val NOT_VISIBLE_THRESHOLD = 20f
+        const val NOT_VISIBLE_THRESHOLD = 2f
         const val TOO_LARGE_THRESHOLD = 3000f
         const val SPEED = 0.01f
     }
@@ -44,7 +44,7 @@ abstract class InfiniteZoomable(protected val sketch: InfiniteZoomSketch, index:
     /**
      * Displays the object
      */
-    protected abstract fun display()
+    protected abstract fun draw()
 
     /**
      * @return the size of the "hole" inside the object
@@ -66,12 +66,12 @@ abstract class InfiniteZoomable(protected val sketch: InfiniteZoomSketch, index:
         return exp(scaleCoefficient) * getOuterWidth() > NOT_VISIBLE_THRESHOLD
     }
 
-    internal fun displayWithScale(){
+    internal fun drawWithScale(){
         sketch.pushMatrix()
         sketch.pushStyle()
         sketch.scale(exp(scaleCoefficient))
         scaleCoefficient += SPEED
-        display()
+        draw()
         sketch.popStyle()
         sketch.popMatrix()
     }

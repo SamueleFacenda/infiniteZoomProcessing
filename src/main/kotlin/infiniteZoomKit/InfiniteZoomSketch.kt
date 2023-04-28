@@ -28,8 +28,8 @@ class InfiniteZoomSketch(
 
     override fun setup() {
         frameRate(framerate.toFloat())
-        surface.setTitle("Infinite camp fire");
-        surface.setResizable(true);
+        surface.setTitle("Infinite camp fire")
+        surface.setResizable(true)
         surface.setLocation((screenWidth-lato)/2, (screenHeight-lato)/2)
 
         background(100)
@@ -83,10 +83,10 @@ class InfiniteZoomSketch(
         box(fieldSize, 0f, fieldSize)
 
         // draw the grid
-        grid.forEach {it.displayWithScale()}
+        grid.forEach {it.drawWithScale()}
 
         // draw the elements
-        elements.forEach { it.displayWithScale() }
+        elements.forEach { it.drawWithScale() }
     }
 
 }

@@ -6,6 +6,6 @@ import processing.core.PApplet
 
 
 fun main() {
-    val sketch = InfiniteZoomSketch(CampFire, false, 4, true, 60)
+    val sketch = InfiniteZoomSketch(CampFire, true, 4, true, 60)
     PApplet.runSketch(arrayOf("InfiniteZoomSketch"), sketch)
 }

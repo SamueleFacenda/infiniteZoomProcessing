@@ -56,7 +56,7 @@ class MoreRandomExample(sketch: InfiniteZoomSketch, index: Int): InfiniteZoomabl
         }
     }
 
-    override fun display() {
+    override fun draw() {
         for (i in 0 until 16) {
             sketch.pushMatrix()
             sketch.fill(colors[i])

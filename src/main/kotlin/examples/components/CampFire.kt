@@ -20,6 +20,7 @@ class CampFire(sketch: InfiniteZoomSketch, index: Int): InfiniteZoomable(sketch,
         }
         const val N_TONGUE = 80
         const val N_ROCKS = 15
+        const val ROCK_CIRCLE_RADIUS = 20f
     }
 
     private val rain = Rain(
@@ -51,24 +52,35 @@ class CampFire(sketch: InfiniteZoomSketch, index: Int): InfiniteZoomable(sketch,
 
     private val rocks = List(N_ROCKS) { Rock(sketch, 5) }
 
-    override fun display() {
-        sketch.strokeWeight(2/exp(getScaleCoefficent()))
+    override fun draw() {
+        setUniformStrokeWeight()
         rain.draw()
+        drawRockCircle()
+        drawTongues()
+    }
 
-        rocks.forEachIndexed { i, r ->
-            sketch.pushMatrix()
-            sketch.translate(
-                sin(i.toFloat() / N_ROCKS * 2 * PI.toFloat()) * 20,
-                -2.5f,
-                cos(i.toFloat() / N_ROCKS * 2 * PI.toFloat()) * 20,
-            )
-            r.draw()
-            sketch.popMatrix()
-        }
+    private fun setUniformStrokeWeight() {
+        sketch.strokeWeight(2/exp(getScaleCoefficent()))
+    }
 
+    private fun drawTongues() {
         tongues.forEach { it.draw() }
         tongues.replaceAll { if (it.isDead()) getNewTongue() else it }
     }
+
+    private fun drawRockCircle() {
+        rocks.forEachIndexed { i, rock ->
+            sketch.pushMatrix()
+            sketch.translate(
+                sin(i.toFloat() / N_ROCKS * 2 * PI.toFloat()) * ROCK_CIRCLE_RADIUS,
+                -2.5f,
+                cos(i.toFloat() / N_ROCKS * 2 * PI.toFloat()) * ROCK_CIRCLE_RADIUS
+            )
+            rock.draw()
+            sketch.popMatrix()
+        }
+    }
+
     override fun getInnerWidth(): Float {
         return 10f
     }
